@@ -6,8 +6,16 @@ interface PowerBIEmbedProps {
 }
 
 export default function PowerBIEmbed({ fornecedorId }: PowerBIEmbedProps) {
-  // Link público compartilhado do Power BI
-  const POWERBI_LINK = "https://app.powerbi.com/links/odI8chaycQ?ctid=9072b93d-c9b5-426f-a79d-fdfa9a9361da&pbi_source=linkShare";
+  // Report ID e Workspace ID do Power BI
+  const REPORT_ID = "396a55c4-c192-4096-b577-28098675d8f0";
+  const WORKSPACE_ID = "me";
+  const TENANT_ID = "9072b93d-c9b5-426f-a79d-fdfa9a9361da";
+
+  // URL de embedding do Power BI (permite visualização sem autenticação)
+  const EMBED_URL = `https://app.powerbi.com/reportEmbed?reportId=${REPORT_ID}&groupId=${WORKSPACE_ID}&autoAuth=true&ctid=${TENANT_ID}`;
+
+  // Link direto para abrir em nova aba
+  const DIRECT_LINK = `https://app.powerbi.com/links/odI8chaycQ?ctid=${TENANT_ID}&pbi_source=linkShare`;
 
   return (
     <Card className="p-6 shadow-lg overflow-hidden">
@@ -16,7 +24,7 @@ export default function PowerBIEmbed({ fornecedorId }: PowerBIEmbedProps) {
           Dashboard Power BI
         </h3>
         <a
-          href={POWERBI_LINK}
+          href={DIRECT_LINK}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded transition"
@@ -29,7 +37,7 @@ export default function PowerBIEmbed({ fornecedorId }: PowerBIEmbedProps) {
       <div className="relative w-full rounded-lg overflow-hidden bg-slate-100">
         <iframe
           title="Power BI Report"
-          src={POWERBI_LINK}
+          src={EMBED_URL}
           width="100%"
           height="600"
           frameBorder="0"
